@@ -20,34 +20,25 @@
   #----------------------------------------------------------------------------#
   # HARDWARE CONFIGURATION                                                     #
   #----------------------------------------------------------------------------#
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-        rocmPackages.clr.icd
-      ];
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
     };
   };
-
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+    nvidiaSettings = true;
+    powerManagement.enable = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
   #----------------------------------------------------------------------------#
   # BOOT & KERNEL                                                              #
   #----------------------------------------------------------------------------#
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      timeout = 0;
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-    };
-    consoleLogLevel = 3;
-
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_6_14; 
+   
     plymouth = {
       enable = true;
     };
@@ -56,14 +47,7 @@
       verbose = false;
     };
 
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
-    ];
-  };
+    
 
   #----------------------------------------------------------------------------#
   # NETWORKING                                                                 #

@@ -128,10 +128,9 @@
       # Key bindings
       bind = [
         # Basic bindings
-        "$mod, F10, exec, $terminal"
+        "$mod, RETURN, exec, $terminal"
         "$mod, BACKSPACE, killactive"
         "ALT, SPACE, exec, $menu -show drun"
-        "$mod, RETURN, exec, $menu -show powermenu"
         "$mod, F11, exec, hyprctl reload"
         "$mod, TAB, workspace, previous"
         

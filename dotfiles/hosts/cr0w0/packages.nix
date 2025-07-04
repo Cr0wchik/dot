@@ -73,6 +73,8 @@
     spotify         # music streaming service
     vesktop         # chat and voice communication platform
     obs-studio      # screen recording
+    nekoray
+
 
     # System Libraries
     gsettings-desktop-schemas  # GSettings desktop schemas
